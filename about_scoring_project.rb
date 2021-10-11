@@ -6,15 +6,18 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 #
 # A greed roll is scored as follows:
 #
-# * A set of three ones is 1000 points
+# * A set of three ones is 1000 points: 1,1,1 => 1000
 #
 # * A set of three numbers (other than ones) is worth 100 times the
-#   number. (e.g. three fives is 500 points).
+#   number. (e.g. three fives is 500 points):
+#  2,2,2 => 200
+#  3,3,3 => 300
 #
 # * A one (that is not part of a set of three) is worth 100 points.
+# 1 => 100 
 #
 # * A five (that is not part of a set of three) is worth 50 points.
-#
+# 5 => 50
 # * Everything else is worth 0 points.
 #
 #
@@ -30,7 +33,20 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 # Your goal is to write the score method.
 
 def score(dice)
-  # You need to write this method
+  return 0 if dice.empty?
+
+  scores = 0
+  out_number = -1
+  numbers = []
+
+  dice.each do |number|
+    case number 
+    when 1
+      scores += 100
+    when 5
+      scores += 50
+    end 
+  end
 end
 
 class AboutScoringProject < Neo::Koan
